@@ -11,5 +11,7 @@ export default defineConfig({
   server: {
     port: 3001,
   },
-  nitro:{}
+  nitro: {
+    preset: 'vercel'
+  }
 });
