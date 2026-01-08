@@ -2,6 +2,9 @@ import { env } from "@no-deploy/env/web";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
+  beforeLoad: async () => {
+    return { url: env.VITE_API_URL };
+  },
   component: HomeComponent,
 });
 
