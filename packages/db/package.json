@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@no-deploy/config": "workspace:*",
-    "@types/pg": "^8.15.6",
+    "@types/pg": "^8.16.0",
     "drizzle-kit": "^0.31.8",
     "typescript": "catalog:"
   }
