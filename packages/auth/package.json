@@ -1,0 +1,24 @@
+{
+  "name": "@no-deploy/auth",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@no-deploy/db": "workspace:*",
+    "@no-deploy/env": "workspace:*",
+    "better-auth": "catalog:",
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@no-deploy/config": "workspace:*",
+    "typescript": "catalog:"
+  }
+}
