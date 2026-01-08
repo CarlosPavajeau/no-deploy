@@ -9,9 +9,7 @@ import { nitro } from 'nitro/vite'
 export default defineConfig({
   plugins: [tsconfigPaths(), tailwindcss(), tanstackStart(), nitro(), viteReact()],
   server: {
-    port: 3001,
+    port: 3000,
   },
-  nitro: {
-    preset: 'vercel'
-  }
+  nitro: {}
 });
