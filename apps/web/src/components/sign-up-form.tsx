@@ -10,7 +10,11 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 
-export default function SignUpForm({ onSwitchToSignIn }: { onSwitchToSignIn: () => void }) {
+export default function SignUpForm({
+  onSwitchToSignIn,
+}: {
+  onSwitchToSignIn: () => void;
+}) {
   const navigate = useNavigate({
     from: "/",
   });
@@ -39,7 +43,7 @@ export default function SignUpForm({ onSwitchToSignIn }: { onSwitchToSignIn: () 
           onError: (error) => {
             toast.error(error.error.message || error.error.statusText);
           },
-        },
+        }
       );
     },
     validators: {

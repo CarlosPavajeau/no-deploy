@@ -24,11 +24,13 @@
     "db:push": "turbo -F @no-deploy/db db:push",
     "db:studio": "turbo -F @no-deploy/db db:studio",
     "db:generate": "turbo -F @no-deploy/db db:generate",
-    "db:migrate": "turbo -F @no-deploy/db db:migrate"
+    "db:migrate": "turbo -F @no-deploy/db db:migrate",
+    "format": "oxfmt"
   },
   "dependencies": {
     "@no-deploy/env": "workspace:*",
     "dotenv": "catalog:",
+    "nitro": "^3.0.1-alpha.1",
     "zod": "catalog:"
   },
   "devDependencies": {
