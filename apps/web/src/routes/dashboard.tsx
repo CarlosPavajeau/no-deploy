@@ -76,7 +76,9 @@ function RouteComponent() {
         {forecasts.map((forecast) => (
           <Item variant="outline" key={forecast.id}>
             <ItemContent>
-              <ItemTitle>#{forecast.id} {forecast.temperature_c}°C</ItemTitle>
+              <ItemTitle>
+                #{forecast.id} {forecast.temperature_c}°C
+              </ItemTitle>
               <ItemDescription>{forecast.summary}</ItemDescription>
             </ItemContent>
             <ItemActions>
