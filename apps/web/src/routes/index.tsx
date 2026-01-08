@@ -1,3 +1,4 @@
+import { env } from "@no-deploy/env/web";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
@@ -27,6 +28,9 @@ function HomeComponent() {
       <div className="grid gap-6">
         <section className="rounded-lg border p-4">
           <h2 className="mb-2 font-medium">API Status</h2>
+          <p>
+            {env.VITE_API_URL}
+          </p>
         </section>
       </div>
     </div>
