@@ -1,14 +1,10 @@
 import { env } from "@no-deploy/env/web";
-import { env as serverEnv } from "@no-deploy/env/server";
 import { createFileRoute } from "@tanstack/react-router";
-import { createServerFn, createServerOnlyFn } from "@tanstack/react-start";
+import { createServerFn } from "@tanstack/react-start";
+import { getServerUrl } from "@/functions/get-server-url";
 
 const getApiUrl = createServerFn({ method: "GET" }).handler(async () => {
   return env.VITE_API_URL;
-});
-
-const getServerUrl = createServerOnlyFn(async () => {
-  return serverEnv.SERVER_APP_URL;
 });
 
 export const Route = createFileRoute("/")({
@@ -37,14 +33,15 @@ const TITLE_TEXT = `
  `;
 
 function HomeComponent() {
+  const { url, serverUrl } = Route.useRouteContext();
   return (
     <div className="container mx-auto max-w-3xl px-4 py-2">
       <pre className="overflow-x-auto font-mono text-sm">{TITLE_TEXT}</pre>
       <div className="grid gap-6">
         <section className="rounded-lg border p-4">
           <h2 className="mb-2 font-medium">API Status</h2>
-          <p>API: {env.VITE_API_URL}</p>
-          <p>Server: {serverEnv.APP_URL}</p>
+          <p>API: {url}</p>
+          <p>Server: {serverUrl}</p>
         </section>
       </div>
     </div>
