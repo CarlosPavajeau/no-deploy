@@ -1,13 +1,13 @@
 import { env } from "@no-deploy/env/web";
 import { env as serverEnv } from "@no-deploy/env/server";
 import { createFileRoute } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
+import { createServerFn, createServerOnlyFn } from "@tanstack/react-start";
 
 const getApiUrl = createServerFn({ method: "GET" }).handler(async () => {
   return env.VITE_API_URL;
 });
 
-const getServerUrl = createServerFn({ method: "GET" }).handler(async () => {
+const getServerUrl = createServerOnlyFn(async () => {
   return serverEnv.SERVER_APP_URL;
 });
 
