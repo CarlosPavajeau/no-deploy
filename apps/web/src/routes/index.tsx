@@ -1,9 +1,15 @@
 import { env } from "@no-deploy/env/web";
 import { createFileRoute } from "@tanstack/react-router";
+import { createServerFn } from "@tanstack/react-start";
+
+const getApiUrl = createServerFn({method: 'GET'}).handler(async () => {
+  return env.VITE_API_URL;
+});
 
 export const Route = createFileRoute("/")({
   beforeLoad: async () => {
-    return { url: env.VITE_API_URL };
+    const url = await getApiUrl();
+    return { url };
   },
   component: HomeComponent,
 });
