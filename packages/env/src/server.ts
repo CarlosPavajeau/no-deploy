@@ -12,6 +12,7 @@ export const env = createEnv({
     NODE_ENV: z
       .enum(["development", "production", "test"])
       .default("development"),
+    APP_URL: type("string"),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
