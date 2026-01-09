@@ -8,7 +8,7 @@ const getApiUrl = createServerFn({ method: "GET" }).handler(async () => {
 });
 
 const getServerUrl = createServerFn({ method: "GET" }).handler(async () => {
-  return serverEnv.APP_URL;
+  return serverEnv.SERVER_APP_URL;
 });
 
 export const Route = createFileRoute("/")({
