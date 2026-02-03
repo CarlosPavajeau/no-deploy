@@ -8,20 +8,20 @@ import { tanstackStartCookies } from "better-auth/tanstack-start";
 const maxSessionCacheAge = 300;
 
 export const auth = betterAuth({
-  database: drizzleAdapter(db, {
-    provider: "pg",
+	database: drizzleAdapter(db, {
+		provider: "pg",
 
-    schema: schema,
-  }),
-  trustedOrigins: [env.CORS_ORIGIN],
-  emailAndPassword: {
-    enabled: true,
-  },
-  session: {
-    cookieCache: {
-      enabled: true,
-      maxAge: maxSessionCacheAge,
-    },
-  },
-  plugins: [tanstackStartCookies()],
+		schema: schema,
+	}),
+	trustedOrigins: [env.CORS_ORIGIN],
+	emailAndPassword: {
+		enabled: true,
+	},
+	session: {
+		cookieCache: {
+			enabled: true,
+			maxAge: maxSessionCacheAge,
+		},
+	},
+	plugins: [tanstackStartCookies()],
 });
