@@ -1,7 +1,5 @@
-import { GitBranchIcon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute, redirect } from "@tanstack/react-router";
-import { Image } from "@unpic/react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -27,7 +25,11 @@ export const Route = createFileRoute("/dashboard")({
 			});
 		}
 
-		const forecasts = await getForecast();
+		const forecasts = await context.queryClient.ensureQueryData({
+			queryKey: ["forecasts"],
+			queryFn: getForecast,
+		});
+
 		return { forecasts };
 	},
 });
@@ -35,42 +37,16 @@ export const Route = createFileRoute("/dashboard")({
 function RouteComponent() {
 	const { session } = Route.useRouteContext();
 
-	const { forecasts } = Route.useLoaderData();
+	const { data: forecasts, dataUpdatedAt } = useSuspenseQuery({
+		queryKey: ["forecasts"],
+		queryFn: getForecast,
+	});
 
 	return (
 		<div className="flex flex-col gap-4">
 			<h1>Dashboard</h1>
 			<p>Welcome {session?.user.name}</p>
-
-			<div className="flex gap-2">
-				<Button variant="outline" size="sm">
-					<HugeiconsIcon icon={GitBranchIcon} /> New Branch
-				</Button>
-				<Button size="sm">
-					<HugeiconsIcon icon={GitBranchIcon} /> New Branch
-				</Button>
-			</div>
-
-			<div className="flex gap-2">
-				<Button variant="outline">
-					<HugeiconsIcon icon={GitBranchIcon} /> New Branch
-				</Button>
-				<Button>
-					<HugeiconsIcon icon={GitBranchIcon} /> New Branch
-				</Button>
-			</div>
-
-			<div>
-				<Image
-					alt={"image"}
-					className="rounded-sm object-cover"
-					height={400}
-					layout="constrained"
-					priority
-					src="https://cetus-cdn.b-cdn.net/e69d388e-3368-41d3-9f41-46a5dc3859d8.webp"
-					width={400}
-				/>
-			</div>
+			<p>Last updated {new Date(dataUpdatedAt).toISOString()}</p>
 
 			<div className="grid grid-cols-3 gap-4">
 				{forecasts.map((forecast) => (
