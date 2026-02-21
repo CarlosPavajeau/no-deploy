@@ -49,9 +49,11 @@ function RootDocument() {
 				<HeadContent />
 			</head>
 			<body>
-				<div className="grid h-svh grid-rows-[auto_1fr]">
+				<div className="flex h-svh flex-col">
 					<Header />
-					<Outlet />
+					<main className="flex-1 overflow-y-auto">
+						<Outlet />
+					</main>
 				</div>
 				<Toaster richColors />
 				<TanStackRouterDevtools position="bottom-left" />
