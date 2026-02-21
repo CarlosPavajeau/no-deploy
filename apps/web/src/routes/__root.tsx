@@ -9,6 +9,8 @@ import {
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 import { Toaster } from "@/components/ui/sonner";
+import { CartProvider } from "@/hooks/use-cart";
+import { ThemeProvider } from "@/hooks/use-theme";
 
 import Header from "../components/header";
 import appCss from "../index.css?url";
@@ -44,16 +46,27 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
 
 function RootDocument() {
 	return (
-		<html lang="en" className="dark">
+		<html lang="en" suppressHydrationWarning>
 			<head>
+				{/* Anti-flash: set correct theme class before CSS/React hydrate */}
+				<script
+					// biome-ignore lint/security/noDangerouslySetInnerHtml: intentional anti-flash inline script
+					dangerouslySetInnerHTML={{
+						__html: `(function(){try{var t=localStorage.getItem('arch-theme');var d=t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',d)}catch(e){}})()`,
+					}}
+				/>
 				<HeadContent />
 			</head>
 			<body>
-				<div className="grid h-svh grid-rows-[auto_1fr]">
-					<Header />
-					<Outlet />
-				</div>
-				<Toaster richColors />
+				<ThemeProvider>
+					<CartProvider>
+						<div className="grid h-svh grid-rows-[auto_1fr]">
+							<Header />
+							<Outlet />
+						</div>
+						<Toaster richColors />
+					</CartProvider>
+				</ThemeProvider>
 				<TanStackRouterDevtools position="bottom-left" />
 				<Scripts />
 			</body>
