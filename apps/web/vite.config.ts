@@ -6,7 +6,14 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  nitro: {},
+  nitro: {
+    cloudflare: {
+      deployConfig: true,
+      nodeCompat: true,
+    },
+    compatibilityDate: "2024-09-19",
+    preset: "cloudflare_module",
+  },
   plugins: [
     tsconfigPaths(),
     tailwindcss(),
