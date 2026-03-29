@@ -45,7 +45,7 @@ function RouteComponent() {
 	return (
 		<div className="flex flex-col gap-4">
 			<h1>Dashboard</h1>
-			<p>Welcome {session?.user.name}</p>
+			<p>Welcome user {session?.user.name}</p>
 			<p>Last updated {new Date(dataUpdatedAt).toISOString()}</p>
 
 			<div className="grid grid-cols-3 gap-4">
